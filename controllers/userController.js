@@ -41,13 +41,13 @@ exports.follow = BigPromise(async (req, res, next) => {
       });
     } else {
       res.status(200).json({
-        success: true,
+        success: false,
         msg: "you already follow this account",
       });
     }
   } else {
     res.status(200).json({
-      success: true,
+      success: false,
       msg: "you cant follow your own account",
     });
   }
@@ -68,13 +68,13 @@ exports.unfollow = BigPromise(async (req, res, next) => {
       });
     } else {
       res.status(200).json({
-        success: true,
-        msg: "you dont follow this account",
+        success: false,
+        msg: "you dont follow this account,please follow first",
       });
     }
   } else {
     res.status(200).json({
-      success: true,
+      success: false,
       msg: "you cant unfollow your own account",
     });
   }

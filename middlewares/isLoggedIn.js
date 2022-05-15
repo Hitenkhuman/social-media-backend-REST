@@ -10,7 +10,7 @@ exports.isLoggedIn = BigPromise(async (req, res, next) => {
   }
 
   if (!token) {
-    res.status(200).json({
+    res.status(401).json({
       success: false,
       data: "Please login first..!",
     });

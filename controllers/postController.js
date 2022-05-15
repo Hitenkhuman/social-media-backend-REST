@@ -57,13 +57,13 @@ exports.like = BigPromise(async (req, res, next) => {
       });
     } else {
       res.status(200).json({
-        success: true,
+        success: false,
         msg: "You have already liked this post",
       });
     }
   } else {
-    res.status(200).json({
-      success: true,
+    res.status(404).json({
+      success: false,
       msg: "Post not exists with given id",
     });
   }
@@ -81,12 +81,12 @@ exports.unlike = BigPromise(async (req, res, next) => {
       });
     } else {
       res.status(200).json({
-        success: true,
+        success: false,
         msg: "Please like the post first",
       });
     }
   } else {
-    res.status(200).json({
+    res.status(404).json({
       success: true,
       msg: "Post not exists with given id",
     });
@@ -126,8 +126,8 @@ exports.specificpost = BigPromise(async (req, res, next) => {
       },
     });
   } else {
-    res.status(200).json({
-      success: true,
+    res.status(404).json({
+      success: false,
       msg: "Post not exists with given id",
     });
   }
