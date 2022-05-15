@@ -1,23 +1,27 @@
 const User = require("../model/user");
 const BigPromise = require("../middlewares/bigPromise");
-const CustomError = require("../utils/customError");
 const token = require("../utils/token");
 exports.authenticate = BigPromise(async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    return next(new CustomError("please provide email and password", 400));
+    res.status(400).json({
+      success: false,
+      msg: "Provide valid credentials",
+    });
   }
   const user = await User.findOne({ email }).select("+password");
 
   if (!user) {
-    return next(
-      new CustomError("Email or password does not match or exist", 400)
-    );
+    res.status(400).json({
+      success: false,
+      msg: "Provide valid credentials",
+    });
   }
   if (user.password !== password) {
-    return next(
-      new CustomError("Email or password does not match or exist", 400)
-    );
+    res.status(400).json({
+      success: false,
+      msg: "Provide valid credentials",
+    });
   }
   token(user, res);
 });
