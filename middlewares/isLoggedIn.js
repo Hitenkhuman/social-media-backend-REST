@@ -11,7 +11,10 @@ exports.isLoggedIn = BigPromise(async (req, res, next) => {
   }
 
   if (!token) {
-    return next(new CustomError("Login first to access this page", 401));
+    res.status(200).json({
+      success: false,
+      data: "Please login first..!",
+    });
   }
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
